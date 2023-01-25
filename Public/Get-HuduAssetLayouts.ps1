@@ -3,8 +3,7 @@ function Get-HuduAssetLayouts {
 	Param (
 		[String]$Name,
 		[Alias("id", "layout_id")]
-		[String]$LayoutId,
-		[String]$Slug
+		[String]$LayoutId
 	)
 	
 	if ($LayoutId) {
@@ -17,10 +16,6 @@ function Get-HuduAssetLayouts {
 		if ($Name) {
 			$ResourceFilter = "$($ResourceFilter)&name=$($Name)"
 		}
-		
-		if ($Slug) {
-			$ResourceFilter = "$($ResourceFilter)&slug=$($Slug)"
-		}	
 		
 		$i = 1;
 		$AllAssetLayouts = do {

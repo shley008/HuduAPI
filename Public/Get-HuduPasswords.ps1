@@ -4,8 +4,8 @@ function Get-HuduPasswords {
 		[Int]$Id = '',
 		[Alias("company_id")]
 		[Int]$CompanyId = '',
-		[String]$Name = '',
-		[String]$Slug
+		[String]$Name = ''
+	
 	)
 	
 	if ($Id) {
@@ -22,10 +22,6 @@ function Get-HuduPasswords {
 		if ($Name) {
 			$ResourceFilter = "$($ResourceFilter)&name=$($Name)"
 		}
-
-		if ($Slug) {
-			$ResourceFilter = "$($ResourceFilter)&slug=$($Slug)"
-		}	
 	
 		$i = 1;
 		$AllPasswords = do {

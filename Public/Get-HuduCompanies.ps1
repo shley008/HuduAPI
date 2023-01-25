@@ -9,8 +9,8 @@ function Get-HuduCompanies {
 		[String]$State = '',
 		[Alias("id_in_integration")]
 		[Int]$IdInIntegration = '',
-		[Int]$Id = '',
-		[String]$Slug
+		[Int]$Id = ''
+	
 	)
 
 
@@ -45,9 +45,7 @@ function Get-HuduCompanies {
 			$ResourceFilter = "$($ResourceFilter)&id_in_integration=$($IdInIntegration)"
 		}
 	
-		if ($Slug) {
-			$ResourceFilter = "$($ResourceFilter)&slug=$($Slug)"
-		}	
+	
 	
 		$i = 1;
 		$AllCompanies = do {

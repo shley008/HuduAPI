@@ -1,18 +1,5 @@
 
 ## Release Notes
-### Version 2.3.0
-```
-Added new integration matching endpoints (Thank you @johnduprey)
-```
-### Version 2.2.1
-```
-Added company types to companies (Thank you @greenlighttec)
-Added resource filter to get-huduassets (Thank you @johnduprey)
-```
-### Version 2.2.0
-```
-Added Get-HuduExpirations (Thank you @AdamWillford)
-```
 ### Version 2.1.1
 ```
 Fix for Get-HuduFolders by ID
@@ -179,7 +166,6 @@ For examples please see my blog: https://mspp.io/category/hudu/ or this reposito
 		Set-HuduPasswordArchive
 		Set-HuduWebsite
 		Get-HuduAppInfo
-		Get-HuduExpirations
 
 ## Usage
 For examples please see my blog: https://mspp.io/category/hudu/ or this repository https://github.com/lwhitelock/HuduAutomation

@@ -4,8 +4,8 @@ function Get-HuduProcesses {
 		[Int]$Id = '',
 		[Alias("company_id")]
 		[Int]$CompanyId = '',
-		[String]$Name = '',
-		[String]$Slug
+		[String]$Name = ''
+	
 	)
 	
 	if ($Id) {
@@ -23,10 +23,6 @@ function Get-HuduProcesses {
 			$ResourceFilter = "$($ResourceFilter)&name=$($Name)"
 		}
 	
-		if ($Slug) {
-			$ResourceFilter = "$($ResourceFilter)&slug=$($Slug)"
-		}	
-
 		$i = 1;
 		$AllProcesses = do {
 			$Processes = Invoke-HuduRequest -Method get -Resource "/api/v1/procedures?page=$i&page_size=1000$($ResourceFilter)"

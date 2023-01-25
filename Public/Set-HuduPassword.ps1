@@ -1,8 +1,10 @@
-function New-HuduPassword {
+function Set-HuduPassword {
   [CmdletBinding()]
   # This will silence the warning for variables with Password in their name.
   [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingPlainTextForPassword", "")]
   Param (
+    [Parameter(Mandatory = $true)] 
+    [Int]$Id,
     [Parameter(Mandatory = $true)]
     [String]$Name,
     [Alias("company_id")]
@@ -27,8 +29,9 @@ function New-HuduPassword {
     [String]$PasswordFolder = ''
   )
   
+
   $AssetPassword = [ordered]@{asset_password = [ordered]@{} }
-      
+  
   $AssetPassword.asset_password.add('name', $Name)
   $AssetPassword.asset_password.add('company_id', $CompanyId)
   $AssetPassword.asset_password.add('password', $Password)
@@ -60,15 +63,14 @@ function New-HuduPassword {
   if ($PasswordType) {
     $AssetPassword.asset_password.add('password_type', $PasswordType)
   }
-  
+    
   if ($PasswordFolder) {
     $assetPassword.asset_password.add('password_folder_id', $PasswordFolder)
   }
   
-  $JSON = $AssetPassword | ConvertTo-Json -Depth 10
+  $JSON = $AssetPassword | convertto-json -Depth 10
   
-  $Response = Invoke-HuduRequest -Method post -Resource "/api/v1/asset_passwords" -body $JSON
+  $Response = Invoke-HuduRequest -Method put -Resource "/api/v1/asset_passwords/$Id" -body $JSON
   
   $Response
-
 }

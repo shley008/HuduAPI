@@ -2,23 +2,21 @@ function Get-HuduAssets {
 	[CmdletBinding()]
 	Param (
 		[Int]$Id = '',
-		[Alias('asset_layout_id')]
+		[Alias("asset_layout_id")]
 		[Int]$AssetLayoutId = '',
-		[Alias('company_id')]
+		[Alias("company_id")]
 		[Int]$CompanyId = '',
 		[String]$Name = '',
 		[Bool]$Archived = $false,
-		[Alias('primary_serial')]
-		[String]$PrimarySerial = '',
-		[String]$Slug
+		[Alias("primary_serial")]
+		[String]$PrimarySerial = ''
 	)
 	
 
 	if ($id -and $CompanyId) {
 		$Asset = Invoke-HuduRequest -Method get -Resource "/api/v1/companies/$CompanyId/assets/$Id"
 		return $Asset
-	}
- else {
+	} else {
 
 		$ResourceFilter = ''
 	
@@ -41,14 +39,6 @@ function Get-HuduAssets {
 		if ($PrimarySerial) {
 			$ResourceFilter = "$($ResourceFilter)&primary_serial=$($PrimarySerial)"
 		}
-
-		if ($Id) {
-			$ResourceFilter = "$($ResourceFilter)&id=$($Id)"
-		}	
-
-		if ($Slug) {
-			$ResourceFilter = "$($ResourceFilter)&slug=$($Slug)"
-		}	
 	
 		$i = 1;
 		$AllAssets = do {
@@ -57,7 +47,12 @@ function Get-HuduAssets {
 			$Assets.Assets
 		} while ($Assets.Assets.count % 1000 -eq 0 -and $Assets.Assets.count -ne 0)
 		
+		
+		if ($id) {
+			$AllAssets = $AllAssets | where-object { $_.id -eq $id }
+		}		
+	
 		return $AllAssets
+
 	}
 }
- 
