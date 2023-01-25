@@ -23,7 +23,7 @@ function New-HuduPassword {
     [String]$Description = '',
     [Alias("password_type")]
     [String]$PasswordType = '',
-    [Alias](password_folder_id")]
+    [Alias("password_folder_id")]
     [String]$PasswordFolder = ''
   )
   
