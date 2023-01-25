@@ -22,7 +22,9 @@ function New-HuduPassword {
     [String]$Username = '',
     [String]$Description = '',
     [Alias("password_type")]
-    [String]$PasswordType = ''
+    [String]$PasswordType = '',
+    [Alias](password_folder_id")]
+    [String]$PasswordFolder = ''
   )
   
   $AssetPassword = [ordered]@{asset_password = [ordered]@{} }
