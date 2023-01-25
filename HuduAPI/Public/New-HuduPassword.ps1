@@ -61,6 +61,10 @@ function New-HuduPassword {
     $AssetPassword.asset_password.add('password_type', $PasswordType)
   }
   
+  if ($PasswordFolder) {
+    $assetPassword.asset_password.add('password_folder_id', $PasswordFolder)
+  }
+  
   $JSON = $AssetPassword | ConvertTo-Json -Depth 10
   
   $Response = Invoke-HuduRequest -Method post -Resource "/api/v1/asset_passwords" -body $JSON
