@@ -22,7 +22,9 @@ function New-HuduPassword {
     [String]$Username = '',
     [String]$Description = '',
     [Alias("password_type")]
-    [String]$PasswordType = ''
+    [String]$PasswordType = '',
+    [Alias("password_folder_id")]
+    [String]$PasswordFolder = ''
   )
   
   $AssetPassword = [ordered]@{asset_password = [ordered]@{} }
@@ -57,6 +59,10 @@ function New-HuduPassword {
 
   if ($PasswordType) {
     $AssetPassword.asset_password.add('password_type', $PasswordType)
+  }
+
+  if ($PasswordFolder) {
+    $assetPassword.asset_password.add('password_folder_id', $PasswordFolder)
   }
   
   $JSON = $AssetPassword | ConvertTo-Json -Depth 10
