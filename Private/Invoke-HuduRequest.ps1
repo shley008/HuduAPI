@@ -10,9 +10,9 @@ function Invoke-HuduRequest {
 	write-verbose "Resource: $Resource"
 	write-verbose "Body: $($Body | out-string)"
 	write-verbose "BaseURL: $(Get-HuduBaseURL)"
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 	try {
+		[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 		if (($Method -eq "put") -or ($Method -eq "post") -or ($Method -eq "delete")) {
 			$HuduAPIKey = Get-HuduApiKey
 			$HuduBaseURL = Get-HuduBaseURL
